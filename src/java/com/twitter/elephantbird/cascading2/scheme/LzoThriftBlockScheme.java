@@ -1,14 +1,19 @@
 package com.twitter.elephantbird.cascading2.scheme;
 
 import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.Job;
 
-import com.twitter.elephantbird.mapred.input.DeprecatedLzoThriftMultiInputFormat;
+import com.twitter.elephantbird.mapred.input.DeprecatedInputFormatWrapper;
 import com.twitter.elephantbird.mapred.output.DeprecatedLzoThriftBlockOutputFormat;
+import com.twitter.elephantbird.mapreduce.input.MultiInputFormat;
 import com.twitter.elephantbird.mapreduce.io.ThriftWritable;
 
 import cascading.flow.hadoop.HadoopFlowProcess;
 import cascading.scheme.Scheme;
 import cascading.tap.Tap;
+
+import java.io.IOException;
 
 /**
  * Scheme for Thrift block encoded files.
@@ -34,7 +39,7 @@ public class LzoThriftBlockScheme extends
 
   @Override
   public void sourceConfInit(HadoopFlowProcess hfp, Tap tap, JobConf conf) {
-    conf.setInputFormat(
-      DeprecatedLzoThriftMultiInputFormat.getInputFormatClass(thriftClass, conf));
+    MultiInputFormat.setClassConf(thriftClass, conf);
+    DeprecatedInputFormatWrapper.setInputFormat(MultiInputFormat.class, conf);
   }
 }
