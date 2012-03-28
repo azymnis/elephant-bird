@@ -20,13 +20,13 @@ import java.io.IOException;
  *
  * @author Argyris Zymnis
  */
-public class LzoThriftBlockScheme extends
-  LzoBlockScheme<ThriftWritable<?>> {
+public class LzoThriftScheme extends
+  LzoBinaryScheme<ThriftWritable<?>> {
 
   private static final long serialVersionUID = -5011096855302946109L;
   private Class thriftClass;
 
-  public LzoThriftBlockScheme(Class thriftClass) {
+  public LzoThriftScheme(Class thriftClass) {
     this.thriftClass = thriftClass;
   }
 

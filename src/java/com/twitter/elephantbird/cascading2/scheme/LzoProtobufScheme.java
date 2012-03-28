@@ -16,17 +16,17 @@ import cascading.tap.Tap;
 import java.io.IOException;
 
 /**
- * Scheme for Protobuf block encoded files.
+ * Scheme for Protobuf block and B64 encoded files.
  *
  * @author Avi Bryant, Ning Liang
  */
-public class LzoProtobufBlockScheme extends
-  LzoBlockScheme<ProtobufWritable<?>> {
+public class LzoProtobufScheme extends
+  LzoBinaryScheme<ProtobufWritable<?>> {
 
   private static final long serialVersionUID = -5011096855302946105L;
   private Class protoClass;
 
-  public LzoProtobufBlockScheme(Class protoClass) {
+  public LzoProtobufScheme(Class protoClass) {
     this.protoClass = protoClass;
   }
 

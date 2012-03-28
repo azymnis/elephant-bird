@@ -21,14 +21,14 @@ import cascading.tuple.Tuple;
 import cascading.tuple.TupleEntry;
 
 /**
- * Scheme for lzo block encoded files.
+ * Scheme for lzo binary encoded files. Handles both block and base 64. Can be used for Protobuf and Thrift.
  *
  * @author Argyris Zymnis
  */
-abstract public class LzoBlockScheme<T extends BinaryWritable<?>> extends
+abstract public class LzoBinaryScheme<T extends BinaryWritable<?>> extends
   Scheme<HadoopFlowProcess, JobConf, RecordReader, OutputCollector, Object[], Object[]> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(LzoBlockScheme.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LzoBinaryScheme.class);
   private static final long serialVersionUID = -5011096855302946106L;
 
   @Override
